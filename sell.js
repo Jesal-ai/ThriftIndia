@@ -4,7 +4,22 @@ const photoInput = document.getElementById('photos');
 const previewBox = document.getElementById('photoPreviews');
 const shippingCostLabel = document.getElementById('shippingCostLabel');
 
-// Preview selected photos
+// Auto-fill year dropdown
+const currentYear = new Date().getFullYear();
+for (let year = currentYear; year >= 1980; year--) {
+  document.getElementById('year').insertAdjacentHTML('beforeend', `<option>${year}</option>`);
+}
+
+// Category selection
+document.querySelectorAll('#categoryOptions button').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('#categoryOptions button').forEach((item) => item.classList.remove('selected'));
+    button.classList.add('selected');
+    categoryInput.value = button.dataset.category;
+  });
+});
+
+// Photo previews
 photoInput.addEventListener('change', () => {
   previewBox.innerHTML = '';
   [...photoInput.files].slice(0, 6).forEach((file) => {
@@ -17,7 +32,16 @@ photoInput.addEventListener('change', () => {
   });
 });
 
-// Submit handler
+// Shipping toggle
+document.querySelectorAll('input[name="shipping"]').forEach((input) => {
+  input.addEventListener('change', () => {
+    const ships = document.querySelector('input[name="shipping"]:checked').value === 'Ship to buyer';
+    shippingCostLabel.classList.toggle('show', ships);
+    document.getElementById('shippingCost').required = ships;
+  });
+});
+
+// Submit handler with Cloudinary + Firestore
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const error = document.getElementById('formError');
@@ -41,7 +65,7 @@ form.addEventListener('submit', async (event) => {
 
   try {
     // Upload all selected photos to Cloudinary
-    const photoFiles = [...photoInput.files].slice(0, 6); // limit to 6
+    const photoFiles = [...photoInput.files].slice(0, 6);
     const photoUrls = [];
 
     for (const file of photoFiles) {
@@ -71,7 +95,7 @@ form.addEventListener('submit', async (event) => {
       shippingCost: document.getElementById('shippingCost').value || null,
       city: JSON.parse(localStorage.getItem('thriftIndiaUser') || 'null')?.location || 'New Delhi',
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      images: photoUrls, // array of Cloudinary URLs
+      images: photoUrls,
       user: auth.currentUser.uid
     };
 
