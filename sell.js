@@ -73,7 +73,7 @@ form.addEventListener('submit', async (event) => {
       formData.append("file", file);
       formData.append("upload_preset", "thrift_upload"); // your Cloudinary preset
 
-      const res = await fetch("https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload", {
+      const res = await fetch("https://api.cloudinary.com/v1_1/s29vhzjw/image/upload", {
         method: "POST",
         body: formData
       });
