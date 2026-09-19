@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Browse pre-loved fashion on ThriftIndia." />
+    <title>Browse finds — ThriftIndia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="browse.css" />
+  </head>
+  <body class="browse-page">
+    <div class="announcement">India's most-loved closet, one good find at a time <span>•</span> List for free</div>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="ThriftIndia home">Thrift<span>India</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="browse.html" aria-current="page">Browse</a>
+        <a href="index.html#categories">Categories</a>
+      </nav>
+      <div class="header-actions">
+        <a class="profile-button" id="profileLink" href="signup.html" aria-label="Create an account">S</a>
+        <a class="sell-button" href="sell.html">Sell an item <span>↗</span></a>
+      </div>
+    </header>
+
+    <main class="browse-main">
+      <section class="browse-hero">
+        <div>
+          <p class="eyebrow"><span></span> The closet, filtered</p>
+          <h1>Browse finds</h1>
+          <p>Search by brand, style, or neighbourhood — then narrow it down until it feels like yours.</p>
+        </div>
+        <form class="browse-search" id="browseSearchForm">
+          <label class="search-input"><span>⌕</span><input id="browseSearch" type="search" placeholder="Search for brands, styles, or pieces" /></label>
+          <button type="submit">Search <span>→</span></button>
+        </form>
+      </section>
+
+      <div class="browse-layout">
+        <aside class="filter-panel" id="filterPanel">
+          <div class="filter-panel-head">
+            <h2>Filters</h2>
+            <button type="button" class="text-button" id="clearFilters">Clear all</button>
+            <button type="button" class="close-filters" id="closeFilters" aria-label="Close filters">×</button>
+          </div>
+
+          <div class="filter-group">
+            <h3>Category</h3>
+            <label><input type="checkbox" name="category" value="Women's clothing" /> Women's clothing</label>
+            <label><input type="checkbox" name="category" value="Men's clothing" /> Men's clothing</label>
+            <label><input type="checkbox" name="category" value="Shoes & sneakers" /> Shoes & sneakers</label>
+            <label><input type="checkbox" name="category" value="Bags & accessories" /> Bags & accessories</label>
+            <label><input type="checkbox" name="category" value="Jewellery" /> Jewellery</label>
+          </div>
+
+          <div class="filter-group">
+            <h3>Condition</h3>
+            <label><input type="checkbox" name="condition" value="New with tags" /> New with tags</label>
+            <label><input type="checkbox" name="condition" value="Like new" /> Like new</label>
+            <label><input type="checkbox" name="condition" value="Excellent" /> Excellent</label>
+            <label><input type="checkbox" name="condition" value="Good" /> Good</label>
+            <label><input type="checkbox" name="condition" value="Fair" /> Fair</label>
+          </div>
+
+          <div class="filter-group">
+            <h3>Price (₹)</h3>
+            <div class="price-row">
+              <label>Min <input id="minPrice" type="number" min="0" inputmode="numeric" placeholder="0" /></label>
+              <label>Max <input id="maxPrice" type="number" min="0" inputmode="numeric" placeholder="5000" /></label>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h3>Size</h3>
+            <div class="chip-row" id="sizeFilters">
+              <button type="button" data-size="XS">XS</button>
+              <button type="button" data-size="S">S</button>
+              <button type="button" data-size="M">M</button>
+              <button type="button" data-size="L">L</button>
+              <button type="button" data-size="UK 6">UK 6</button>
+              <button type="button" data-size="UK 8">UK 8</button>
+              <button type="button" data-size="W28">W28</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h3>City</h3>
+            <label><input type="checkbox" name="city" value="New Delhi" /> New Delhi</label>
+            <label><input type="checkbox" name="city" value="Gurugram" /> Gurugram</label>
+            <label><input type="checkbox" name="city" value="Noida" /> Noida</label>
+            <label><input type="checkbox" name="city" value="Mumbai" /> Mumbai</label>
+            <label><input type="checkbox" name="city" value="Bengaluru" /> Bengaluru</label>
+            <label><input type="checkbox" name="city" value="Pune" /> Pune</label>
+            <label><input type="checkbox" name="city" value="Hyderabad" /> Hyderabad</label>
+            <label><input type="checkbox" name="city" value="Kolkata" /> Kolkata</label>
+            <label><input type="checkbox" name="city" value="Jaipur" /> Jaipur</label>
+          </div>
+        </aside>
+
+        <section class="browse-results">
+          <div class="results-toolbar">
+            <button type="button" class="filter-toggle" id="openFilters">Filters</button>
+            <p id="resultsCount">Loading listings…</p>
+            <label class="sort-label">Sort
+              <select id="sortSelect">
+                <option value="newest">Newest</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+              </select>
+            </label>
+          </div>
+          <div class="active-filters" id="activeFilters"></div>
+          <div class="browse-grid" id="browseGrid"></div>
+          <div class="empty-results" id="emptyResults" hidden>
+            <strong>Nothing in this corner of the closet.</strong>
+            <p>Try a broader search, another city, or clear a filter.</p>
+            <button type="button" class="dark-button" id="resetEmpty">Clear filters</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <a class="brand" href="index.html">Thrift<span>India</span></a>
+      <p>Pre-loved, made personal.</p>
+      <span>© 2026 ThriftIndia</span>
+    </footer>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="filter-backdrop" id="filterBackdrop" hidden></div>
+    <script src="browse.js"></script>
+  </body>
+</html>

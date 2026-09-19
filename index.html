@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ThriftIndia — find pre-loved fashion near you." />
+    <title>ThriftIndia — Pre-loved, made personal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="announcement">India's most-loved closet, one good find at a time <span>•</span> List for free</div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="ThriftIndia home">Thrift<span>India</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="browse.html">Browse</a><a href="#categories">Categories</a>
+      </nav>
+      <div class="header-actions">
+        <button class="location-button" type="button" id="locationButton" aria-label="Choose location" aria-haspopup="dialog"><span class="pin">⌖</span><span id="locationLabel">New Delhi</span><span class="chevron">⌄</span></button>
+        <button class="icon-button" type="button" aria-label="Saved items">♡</button>
+        <a class="profile-button" id="profileLink" href="signup.html" aria-label="Create an account">S</a>
+        <a class="sell-button" href="sell.html">Sell an item <span>↗</span></a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> India’s peer-to-peer fashion marketplace</p>
+          <h1>Good clothes<br />deserve <em>another</em> story.</h1>
+          <p class="hero-description">Find pre-loved pieces with character, from closets around you. Better for your wardrobe, lighter on the planet.</p>
+          <form class="search-panel" id="searchForm">
+            <label class="search-input"><span>⌕</span><input id="searchInput" type="search" placeholder="Search for brands, styles, or pieces" /></label>
+            <button type="submit">Search <span>→</span></button>
+          </form>
+          <p class="popular">Popular: <a href="browse.html?q=Vintage%20denim">Vintage denim</a><a href="browse.html?q=Coach">Coach bags</a><a href="browse.html?q=Linen">Linen shirts</a></p>
+        </div>
+        <div class="hero-image-wrap">
+          <div class="hero-image"></div>
+        </div>
+      </section>
+
+      <section class="browse-section" id="categories">
+        <div class="section-heading"><div><p class="eyebrow"><span></span> Browse your way</p><h2>What's your next find?</h2></div><a href="browse.html">View all finds <span>→</span></a></div>
+        <div class="category-grid">
+          <a href="browse.html?category=Women%27s%20clothing" class="category-card women"><div><span>01</span><h3>Women's<br />clothing</h3><b>Explore →</b></div></a>
+          <a href="browse.html?category=Men%27s%20clothing" class="category-card men"><div><span>02</span><h3>Men's<br />clothing</h3><b>Explore →</b></div></a>
+          <a href="browse.html?category=Shoes%20%26%20sneakers" class="category-card shoes"><div><span>03</span><h3>Shoes &<br />sneakers</h3><b>Explore →</b></div></a>
+          <a href="browse.html?category=Bags%20%26%20accessories" class="category-card accessories"><div><span>04</span><h3>Bags &<br />accessories</h3><b>Explore →</b></div></a>
+        </div>
+      </section>
+
+      <section class="new-in" id="new-in">
+        <div class="section-heading"><div><h2>Listings around you</h2></div><a href="browse.html">See all listings <span>→</span></a></div>
+        <div class="product-grid" id="productGrid">
+          <article class="product-card"><div class="product-image product-one"><button class="heart" aria-label="Save item">♡</button><span class="condition">Like new</span></div><div class="product-info"><p>Levi's · W28</p><h3>501 high-rise straight jeans</h3><div><strong>₹1,250</strong><span>New Delhi · within 2 km</span></div></div></article>
+          <article class="product-card"><div class="product-image product-two"><button class="heart" aria-label="Save item">♡</button><span class="condition">Excellent</span></div><div class="product-info"><p>H&M · S</p><h3>Chocolate brown blazer</h3><div><strong>₹850</strong><span>Gurugram · within 8 km</span></div></div></article>
+          <article class="product-card"><div class="product-image product-three"><button class="heart" aria-label="Save item">♡</button><span class="condition">Good</span></div><div class="product-info"><p>Charles & Keith</p><h3>Ivory shoulder bag</h3><div><strong>₹1,400</strong><span>New Delhi · within 4 km</span></div></div></article>
+          <article class="product-card"><div class="product-image product-four"><button class="heart" aria-label="Save item">♡</button><span class="condition">Like new</span></div><div class="product-info"><p>Converse · UK 6</p><h3>Chuck 70 canvas sneakers</h3><div><strong>₹1,800</strong><span>Noida · within 11 km</span></div></div></article>
+        </div>
+      </section>
+
+      <section class="sell-banner" id="sell"><div><p class="eyebrow"><span></span> Your closet has more to give</p><h2>Pass it on.<br /><em>Make room for new stories.</em></h2><a href="sell.html" class="dark-button">Start selling <span>↗</span></a></div><div class="banner-stat"><strong>3,000+</strong><span>pieces passed<br />on every week</span></div></section>
+
+      <section class="how-it-works" id="how-it-works"><p class="eyebrow"><span></span> The simple bit</p><h2>Thrifting should feel easy.</h2><div class="steps"><div><span>01</span><h3>Find your piece</h3><p>Search by style, brand, or the neighbourhood you're in.</p></div><div><span>02</span><h3>Talk to the seller</h3><p>Ask your questions and agree on a handover that suits you.</p></div><div><span>03</span><h3>Love it longer</h3><p>Give a great piece the next chapter it deserves.</p></div></div></section>
+    </main>
+    <footer><a class="brand" href="#top">Thrift<span>India</span></a><p>Pre-loved, made personal.</p><span>© 2026 ThriftIndia</span></footer>
+    <div class="location-modal" id="locationModal" aria-hidden="true">
+      <div class="location-dialog" role="dialog" aria-modal="true" aria-labelledby="locationTitle">
+        <div class="dialog-heading"><div><p class="eyebrow"><span></span> Your local marketplace</p><h2 id="locationTitle">Choose your location</h2></div><button class="close-location" id="closeLocation" type="button" aria-label="Close location picker">×</button></div>
+        <button class="use-location" id="useLocation" type="button"><span>⌖</span><div><strong>Use my current location</strong><small>Find listings closest to you</small></div><b>→</b></button>
+        <label class="location-search"><span>⌕</span><input id="locationSearch" type="search" autocomplete="off" placeholder="Search for your city, area or pincode" /></label>
+        <p class="location-note" id="locationNote">Start typing to search locations across India.</p>
+        <div class="location-results" id="locationResults" role="listbox" aria-label="Location results"></div>
+        <div class="popular-cities" id="popularCities"><p>Popular cities</p><div><button type="button">New Delhi</button><button type="button">Mumbai</button><button type="button">Bengaluru</button><button type="button">Pune</button><button type="button">Hyderabad</button><button type="button">Kolkata</button></div></div>
+        <p class="geocode-credit">Location search powered by <a href="https://opencagedata.com/" target="_blank" rel="noreferrer">OpenCage</a></p>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
