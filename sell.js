@@ -4,7 +4,7 @@ const photoInput = document.getElementById('photos');
 const previewBox = document.getElementById('photoPreviews');
 const shippingCostLabel = document.getElementById('shippingCostLabel');
 
-// Preview logic stays the same
+// Preview selected photos
 photoInput.addEventListener('change', () => {
   previewBox.innerHTML = '';
   [...photoInput.files].slice(0, 6).forEach((file) => {
@@ -34,24 +34,28 @@ form.addEventListener('submit', async (event) => {
     error.textContent = 'Please confirm that your item follows the selling rules.';
     return;
   }
-
   if (!auth.currentUser) {
     error.textContent = 'You must be logged in to add a product.';
     return;
   }
 
-  // Upload first photo to Cloudinary
-  const file = photoInput.files[0];
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("upload_preset", "thrift_upload"); // your Cloudinary preset
-
   try {
-    const res = await fetch("https://api.cloudinary.com/v1_1/s29vhzjw/image/upload", {
-      method: "POST",
-      body: formData
-    });
-    const data = await res.json();
+    // Upload all selected photos to Cloudinary
+    const photoFiles = [...photoInput.files].slice(0, 6); // limit to 6
+    const photoUrls = [];
+
+    for (const file of photoFiles) {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "thrift_upload"); // your Cloudinary preset
+
+      const res = await fetch("https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload", {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+      photoUrls.push(data.secure_url);
+    }
 
     // Build listing object
     const listing = {
@@ -59,10 +63,15 @@ form.addEventListener('submit', async (event) => {
       title: document.getElementById('title').value.trim(),
       brand: document.getElementById('brand').value.trim(),
       condition: document.getElementById('condition').value,
+      year: document.getElementById('year').value,
+      details: document.getElementById('details').value.trim(),
       price: document.getElementById('price').value,
+      negotiable: document.getElementById('negotiable').checked,
+      shipping: document.querySelector('input[name="shipping"]:checked').value,
+      shippingCost: document.getElementById('shippingCost').value || null,
       city: JSON.parse(localStorage.getItem('thriftIndiaUser') || 'null')?.location || 'New Delhi',
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      image: data.secure_url, // Cloudinary URL
+      images: photoUrls, // array of Cloudinary URLs
       user: auth.currentUser.uid
     };
 
